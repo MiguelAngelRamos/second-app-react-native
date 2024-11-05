@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { TextInput, HelperText } from 'react-native-paper';
+import { TextInput, HelperText, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -15,7 +15,7 @@ interface FormValues {
   password: string;
 }
 
-const App: React.FC = () => {
+const App: React.FC<{}> = () => {
   return(
     <View style={styles.container}>
       <Formik
@@ -45,7 +45,18 @@ const App: React.FC = () => {
               label="Contraseña"
               value={values.password}
               onChangeText={handleChange('password')}
+              error={touched.password && errors.password ? true: false}
+              style={styles.input}
             />
+            {touched.password && errors.password && (
+             <HelperText type="error" visible={true}>
+               {errors.password}
+             </HelperText>
+            )}
+
+            <Button mode="contained" onPress={handleSubmit} style={styles.button}>
+              Iniciar Session
+            </Button>
           </>
 
         )}
@@ -60,6 +71,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10
   },
-  input: {},
-  button: {}
+  input: {
+    marginTop: 10
+  },
+  button: {
+    marginTop: 20
+  }
 });
+
+export default App;
