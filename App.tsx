@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
-export default function App() {
-  return (
+// Esquema de validación
+const loginSchema = Yup.object().shape({
+  email: Yup.string().email('Por favor, ingrese un correo válido').required('El correo es obligatorio'),
+  password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria')
+});
+
+interface FormValues {
+  email: string;
+  password: string;
+}
+
+const App: React.FC = () => {
+  return(
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Formik
+       initialValues={{ email: '', password: ''}}
+       validationSchema={loginSchema}
+      >
+
+      </Formik>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    padding: 10
   },
+  input: {},
+  button: {}
 });
