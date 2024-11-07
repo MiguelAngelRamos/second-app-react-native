@@ -27,9 +27,9 @@ const App: React.FC<{}> = () => {
        }}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
-          <View>
-            <Text>Hola</Text>
-            <Text>Inicia session con tu cuenta</Text>
+          <View style={styles.formContainer}>
+            <Text style={styles.title}>Hola</Text>
+            <Text style={styles.subtitle}>Inicia session con tu cuenta</Text>
 
             <TextInput
               label="Correo Electrónico"
@@ -63,19 +63,24 @@ const App: React.FC<{}> = () => {
             )}
 
             <TouchableOpacity>
-              <Text>Olvidate tu contraseña?</Text>
+              <Text style={styles.forgotPassword}>Olvidate tu contraseña?</Text>
             </TouchableOpacity>
 
             <Button mode="contained" onPress={() => handleSubmit()} style={styles.button}>
               Iniciar Session
             </Button>
-            <Text>Inicia sesion usando redes sociales</Text>
+            <Text style={styles.socialLoginText}>Inicia sesion usando redes sociales</Text>
 
-            <View>
-              <FontAwesome name="facebook" size={24} color="#3b5998"/>
-              <FontAwesome name="twitter" size={24} color="#00acee"/>
-              <FontAwesome name="google" size={24} color="#db4a39"/>
+            <View style={styles.socialIcons}>
+              <FontAwesome name="facebook" size={24} color="#3b5998"  style={styles.iconSpacing}/>
+              <FontAwesome name="twitter" size={24} color="#00acee" style={styles.iconSpacing}/>
+              <FontAwesome name="google" size={24} color="#db4a39" style={styles.iconSpacing}/>
             </View>
+
+            <TouchableOpacity>
+              <Text style={styles.registerText}>No tienes cuenta?, crea una</Text>
+            </TouchableOpacity>
+
           </View>
 
          
@@ -93,10 +98,55 @@ const styles = StyleSheet.create({
     padding: 10
   },
   input: {
-    marginTop: 10
+    marginTop: 10,
+    backgroundColor: 'transparent',
+    marginBottom: 20
   },
   button: {
+    backgroundColor: '#6200EE',
+    borderRadius: 10,
     marginTop: 20
+  },
+  formContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20
+  },
+  socialIcons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#9C27B0',
+    textAlign: 'center',
+    marginBottom: 20
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#9C27B0',
+    textAlign: 'center',
+    marginBottom: 20
+  },
+  forgotPassword: {
+    marginTop: 10,
+    color: '#9C27B0',
+    marginBottom: 20,
+  },
+  socialLoginText: {
+    textAlign: 'center',
+    color: '#9C27B0',
+    marginVertical: 20
+  },
+  registerText: {
+    textAlign: 'center',
+    color:'#9C27B0',
+    marginTop: 20,
+  },
+  iconSpacing: {
+    marginHorizontal: 10
   }
 });
 
