@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { TextInput, HelperText, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -26,7 +26,10 @@ const App: React.FC<{}> = () => {
        }}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
-          <>
+          <View>
+
+            <Text>Hola</Text>
+            <Text>Inicia session con tu cuenta</Text>
             <TextInput
               label="Correo Electrónico"
               value={values.email}
@@ -58,10 +61,17 @@ const App: React.FC<{}> = () => {
              </HelperText>
             )}
 
+            <TouchableOpacity>
+              <Text>Olvidate tu contraseña?</Text>
+            </TouchableOpacity>
+
             <Button mode="contained" onPress={() => handleSubmit()} style={styles.button}>
               Iniciar Session
             </Button>
-          </>
+            <Text>Inicia sesion usando redes sociales</Text>
+          </View>
+
+         
 
         )}
       </Formik>
