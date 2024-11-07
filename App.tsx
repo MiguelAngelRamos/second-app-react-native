@@ -32,9 +32,11 @@ const App: React.FC<{}> = () => {
               value={values.email}
               onChangeText={handleChange('email')}
               autoCapitalize='none'
+              onBlur={handleBlur('email')}
               error={touched.email && errors.email ? true: false}
+              style={styles.input}
             />
-
+            
             {touched.email && errors.email && (
               <HelperText type="error" visible={true}>
                 {errors.email}
@@ -44,7 +46,9 @@ const App: React.FC<{}> = () => {
             <TextInput
               label="Contraseña"
               value={values.password}
+              secureTextEntry
               onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
               error={touched.password && errors.password ? true: false}
               style={styles.input}
             />
@@ -54,7 +58,7 @@ const App: React.FC<{}> = () => {
              </HelperText>
             )}
 
-            <Button mode="contained" onPress={handleSubmit} style={styles.button}>
+            <Button mode="contained" onPress={() => handleSubmit()} style={styles.button}>
               Iniciar Session
             </Button>
           </>
